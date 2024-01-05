@@ -2,16 +2,25 @@ local plugins = {
   {
     "nvimtools/none-ls.nvim",
     event = "VeryLazy",
-    opts = function ()
+    opts = function()
       return require "custom.configs.null-ls"
-    end
+    end,
   },
   {
     "neovim/nvim-lspconfig",
-    config = function ()
+    config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
-    end
+    end,
+  },
+  {
+    "Pocco81/auto-save.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("auto-save").setup {
+        enabled = true,
+      }
+    end,
   },
   {
     "williamboman/mason.nvim",
@@ -23,9 +32,9 @@ local plugins = {
         "prettier",
         "js-debug-adapter",
         "stylua",
-        "codespell"
-      }
-    }
+        "codespell",
+      },
+    },
   },
   {
     "windwp/nvim-ts-autotag",
@@ -34,25 +43,25 @@ local plugins = {
       "typescript",
       "javascriptreact",
       "typescriptreact",
-      "html"
+      "html",
     },
-    config = function ()
+    config = function()
       require("nvim-ts-autotag").setup()
-    end
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function ()
+    opts = function()
       opts = require "plugins.configs.treesitter"
       opts.ensure_installed = {
         "lua",
         "javascript",
         "typescript",
         "tsx",
-        "css"
+        "css",
       }
       return opts
-    end
-  }
+    end,
+  },
 }
 return plugins
